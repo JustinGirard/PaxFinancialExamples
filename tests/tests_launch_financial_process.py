@@ -3,8 +3,8 @@ import datetime, uuid, psutil, sys,os,time
 import uuid, psutil, sys,os
 import sys
 import importlib
-sys.path.append('..')
-sys.path.append('../../')
+sys.path.append('../paxdk')
+
 #from  paxqueryengine.paxqueryengine  import mongoquerymanager,paxqueryengine  
 import paxdk
 pq = paxdk.PaxFinancialAPI(url_version='dev')

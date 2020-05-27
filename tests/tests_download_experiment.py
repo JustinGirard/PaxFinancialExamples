@@ -5,8 +5,7 @@
 
 
 import sys
-sys.path.append("..")
-sys.path.append("../..")
+sys.path.append("../paxdk")
 
 #from  paxnb import paxnb
 import paxdk
