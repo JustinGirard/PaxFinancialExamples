@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>get_historical_hour - Pax Financial Examples</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="generator" content="mkdocs-1.1.2, mkdocs-gitbook-1.0.7">
+
+<link rel="shortcut icon" href="../../../images/favicon.ico" type="image/x-icon">
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta rel="next" href="" />
+<link href="../../../css/style.min.css" rel="stylesheet"> 
+</head>
+
+<body>
+<div class="book">
+<div class="book-summary">
+<div id="book-search-input" role="search">
+<input type="text" placeholder="Type to search" />
+</div> <!-- end of book-search-input -->
+
+<nav role="navigation">
+<ul class="summary">
+<li>
+<a href="../../.." target="_blank" class="custom-link">Pax Financial Examples</a>
+</li>
+<li class="divider"></li>
+<li class="header">Documentation</li>
+
+<li>
+<a href="../../manual/Introduction/" class="">Introduction</a>
+</li>
+
+<li>
+<a href="../../manual/GettingStarted/" class="">Getting Started</a>
+</li>
+
+<li>
+<a href="../../manual/SubmittingAnOrder/" class="">Submitting an Order</a>
+</li>
+
+<li class="header">Endpoints</li>
+
+<li>
+<a href="./" class="active">get_historical_hour</a>
+</li>
+
+<li>
+<a href="../submit_single_market_order/" class="">submit_single_market_order</a>
+</li>
+
+<li>
+<a href="../model/" class="">model</a>
+</li>
+
+<li class="header">Examples</li>
+
+<li>
+<a href="../../../examples/ReadingFinancialData/" class="">Reading Financial Data</a>
+</li>
+
+<li>
+<a href="../../../examples/TensorflowModel/" class="">Financial Model Training</a>
+</li>
+
+<li>
+<a href="../../../examples/TensorflowModelVolatility/" class="">Volatility Model</a>
+</li>
+
+<li class="divider"></li>
+
+
+
+<li><a href="http://www.mkdocs.org">
+Published with MkDocs
+</a></li>
+
+<li><a href="https://github.com/GitbookIO/theme-default">
+Theme by GitBook
+</a></li>
+</ul>
+
+</nav>
+
+</div> <!-- end of book-summary -->
+
+<div class="book-body">
+<div class="body-inner">
+<div class="book-header" role="navigation">
+
+<!-- Title -->
+<h1>
+<i class="fa fa-circle-o-notch fa-spin"></i>
+<a href="." ></a>
+</h1>
+
+</div> <!-- end of book-header -->
+
+<div class="page-wrapper" tabindex="-1" role="main">
+<div class="page-inner">
+<div id="book-search-results">
+<div class="search-noresults">
+
+<section class="normal markdown-section">
+
+
+
+<h1 id="get_historical_hour"><code>get_historical_hour</code></h1>
+<h2 id="description">Description</h2>
+<p>Retrieves historical hour bars for a given time interval in the past. An hour bar consists of the opening price, the closing price, the high price, and the low price for that one-hour interval.</p>
+<h3 id="arguments">Arguments</h3>
+<p><strong>api_key :<em> str</em></strong></p>
+<p>a valid API key</p>
+<p><strong>time_in :<em> datetime</em></strong></p>
+<p>the start of the interval for which to collect hour bars</p>
+<p><strong>time_end :<em> datetime</em></strong> </p>
+<p>the end of the interval for which to collect hour bars</p>
+<p><strong>Ticker :<em> str</em></strong> </p>
+<p>the ticker symbol of the security </p>
+<h2 id="simple-example">Simple Example</h2>
+<pre><code>bars = pq.get_historical_hour({'api_key':api_key,
+                                'time_in':datetime.datetime(2020,4,1,10),
+                                'time_end':datetime.datetime(2020,4,1,12),
+                                'Ticker':'BTCUSDT',
+                                                             },remote=True)
+print(bars)
+</code></pre>
+<h2 id="simple-example-output">Simple Example Output</h2>
+<pre><code>{'_id': None, 'DateTime': datetime.datetime(2020, 4, 1, 10, 0), 'Ticker': 'BTCUSDT', 
+'ClosePrice': 6295.03, 'HighPrice': 6318.89, 'LowPrice': 6288.02, 
+'OpenPrice': 6298.74, 'close': 6295.03, 'date_time': datetime.datetime(2020, 4, 1, 10, 0), 
+'from_symbol': 'BTC', 'high': 6318.89, 'low': 6288.02, 'open': 6298.74, 
+'requested_date': '2020-06-09T21:43:53.656000', 'time': 1585735200, 
+'to_symbol': 'USDT', 'volumefrom': 19079.12, 'volumeto': 120246431.93}
+</code></pre>
+<h2 id="failure-examples">Failure Examples</h2>
+<pre><code># no ticker
+# A ticker symbol must be provided.
+
+bars = pq.get_historical_hour({'api_key':api_key,
+                                'time_in':datetime.datetime(2020,4,1,10),
+                                'time_end':datetime.datetime(2020,4,1,12),
+                                                             },remote=True)
+print(bars)
+
+
+
+# Ticker = None
+# A ticker symbol must be provided.
+
+ bars = pq.get_historical_hour({'api_key':api_key,
+                                'time_in':datetime.datetime(2020,4,1,10),
+                                'time_end':datetime.datetime(2020,4,1,12),
+                                'Ticker': None,
+                                                             },remote=True)
+print(bars)
+</code></pre>
+<h2 id="failure-examples-output">Failure Examples Output</h2>
+<pre><code>Hour Data for S&amp;P not currently supported  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+
+Traceback (most recent call last):
+  File "/tmp/tmpjsn_a1hk.py", line 147, in process_record
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 242, in query
+    return_dict =  self.query_debug(filter,source_id)
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 224, in query_debug
+    res = self.query_objects[source_id].process(filter)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNetwork.py", line 159, in process
+    feature = self.instanceMap[instanceName].process(feature,self.lastFeature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 65, in process
+    self.dependencies[k].process(feature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 90, in process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 83, in process
+    feature[self.settings['name']] =  self.do_process(features,self.settings)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 173, in do_process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 165, in do_process
+    return self.do_input(features['input'],settings)
+  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+Exception: Hour Data for S&amp;P not currently supported
+
+
+Hour Data for S&amp;P not currently supported  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+
+Traceback (most recent call last):
+  File "/tmp/tmpjsn_a1hk.py", line 147, in process_record
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 242, in query
+    return_dict =  self.query_debug(filter,source_id)
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 224, in query_debug
+    res = self.query_objects[source_id].process(filter)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNetwork.py", line 159, in process
+    feature = self.instanceMap[instanceName].process(feature,self.lastFeature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 65, in process
+    self.dependencies[k].process(feature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 90, in process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 83, in process
+    feature[self.settings['name']] =  self.do_process(features,self.settings)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 173, in do_process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 165, in do_process
+    return self.do_input(features['input'],settings)
+  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+Exception: Hour Data for S&amp;P not currently supported
+</code></pre>
+<h2 id="three-examples">Three Examples</h2>
+<pre><code>bars = pq.get_historical_hour({'api_key':api_key,
+                                'time_in':datetime.datetime(2020,4,1,10),
+                                'time_end':datetime.datetime(2020,4,1,12),
+                                'Ticker':'AAPL',
+                                                             },remote=True)
+print(bars)
+
+
+
+
+bars = pq.get_historical_hour({'api_key':api_key,
+                                'time_in':datetime.datetime(2020,4,1,10),
+                                'time_end':datetime.datetime(2020,4,1,12),
+                                'Ticker':'CADUSD',
+                                                             },remote=True)
+print(bars)
+
+
+
+
+bars = pq.get_historical_hour({'api_key':api_key,
+                                'time_in':datetime.datetime(2020,4,1,10),
+                                'time_end':datetime.datetime(2020,4,1,12),
+                                'Ticker':'ETHBTC',
+                                                             },remote=True)
+print(bars)
+</code></pre>
+<h2 id="three-examples-output">Three Examples Output</h2>
+<pre><code>Hour Data for S&amp;P not currently supported  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+
+Traceback (most recent call last):
+  File "/tmp/tmpjsn_a1hk.py", line 147, in process_record
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 242, in query
+    return_dict =  self.query_debug(filter,source_id)
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 224, in query_debug
+    res = self.query_objects[source_id].process(filter)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNetwork.py", line 159, in process
+    feature = self.instanceMap[instanceName].process(feature,self.lastFeature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 65, in process
+    self.dependencies[k].process(feature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 90, in process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 83, in process
+    feature[self.settings['name']] =  self.do_process(features,self.settings)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 173, in do_process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 165, in do_process
+    return self.do_input(features['input'],settings)
+  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+Exception: Hour Data for S&amp;P not currently supported
+
+
+Hour Data for S&amp;P not currently supported  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+
+Traceback (most recent call last):
+  File "/tmp/tmpjsn_a1hk.py", line 147, in process_record
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 242, in query
+    return_dict =  self.query_debug(filter,source_id)
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 224, in query_debug
+    res = self.query_objects[source_id].process(filter)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNetwork.py", line 159, in process
+    feature = self.instanceMap[instanceName].process(feature,self.lastFeature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 65, in process
+    self.dependencies[k].process(feature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 90, in process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 83, in process
+    feature[self.settings['name']] =  self.do_process(features,self.settings)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 173, in do_process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 165, in do_process
+    return self.do_input(features['input'],settings)
+  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+Exception: Hour Data for S&amp;P not currently supported
+
+
+
+Hour Data for S&amp;P not currently supported  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+
+Traceback (most recent call last):
+  File "/tmp/tmpjsn_a1hk.py", line 147, in process_record
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 242, in query
+    return_dict =  self.query_debug(filter,source_id)
+  File "/mnt/dev/dev/paxdk/PaxFinancialAPI.py", line 224, in query_debug
+    res = self.query_objects[source_id].process(filter)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNetwork.py", line 159, in process
+    feature = self.instanceMap[instanceName].process(feature,self.lastFeature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 65, in process
+    self.dependencies[k].process(feature)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 90, in process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 83, in process
+    feature[self.settings['name']] =  self.do_process(features,self.settings)
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 173, in do_process
+    raise e
+  File "/mnt/dev/dev/processingNetwork/ProcessingNode.py", line 165, in do_process
+    return self.do_input(features['input'],settings)
+  File "/mnt/dev/dev/FinancialAlgorithm/FinancialQueries.py", line 308, in do_input
+    raise(Exception('Hour Data for S&amp;P not currently supported'))
+Exception: Hour Data for S&amp;P not currently supported
+</code></pre>
+
+
+</section>
+</div> <!-- end of search-noresults -->
+<div class="search-results">
+<div class="has-results">
+
+<h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+<ul class="search-results-list"></ul>
+
+</div> <!-- end of has-results -->
+<div class="no-results">
+
+<h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+
+</div> <!-- end of no-results -->
+</div> <!-- end of search-results -->
+</div> <!-- end of book-search-results -->
+
+</div> <!-- end of page-inner -->
+</div> <!-- end of page-wrapper -->
+
+</div> <!-- end of body-inner -->
+
+</div> <!-- end of book-body -->
+<script src="../../../js/main.js"></script>
+<script src="../../../search/main.js"></script>
+<script src="../../../js/gitbook.min.js"></script>
+<script src="../../../js/theme.min.js"></script>
+</body>
+</html>

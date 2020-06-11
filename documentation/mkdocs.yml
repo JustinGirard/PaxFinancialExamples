@@ -1,0 +1,19 @@
+site_name: Pax Financial Examples
+nav:
+    - Documentation:
+        - 'Introduction': 'docs/manual/Introduction.md' 
+        - 'Getting Started': 'docs/manual/GettingStarted.md'
+        - 'Submitting an Order': 'docs/manual/SubmittingAnOrder.md'
+    - 'Endpoints':
+        - get_historical_hour: 'docs/endpoints/get_historical_hour.md'
+        - submit_single_market_order: 'docs/endpoints/submit_single_market_order.md'
+        - model: 'docs/endpoints/model.md'
+    - Examples:
+        - 'Reading Financial Data': 'examples/ReadingFinancialData.md'
+        - 'Financial Model Training': 'examples/TensorflowModel.md'
+        - 'Volatility Model': 'examples/TensorflowModelVolatility.md'
+
+theme:
+  name: gitbook
+
+

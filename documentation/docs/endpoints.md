@@ -1,0 +1,3 @@
+- [`submit_single_market_order`](docs/endpoints/submit_single_market_order.md)
+- [`model`](docs/endpoints/model.md)
+- [`get_historical_hour`](docs/endpoints/get_historical_hour.md)
