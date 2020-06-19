@@ -2,29 +2,11 @@
 # Volatility Model
 This model predicts volatility of an underlying security over a one month rolling window using a proprietary technique. You can use volatility data in a variety of ways, when combined with indication of market direction, to choose when to enter or exit a position.
 
-
-```python
-import os
-import matplotlib.pyplot as plt
-import tensorflow as tf
-import sys
-#sys.path.append("../")
-import paxdk.PaxFinancialAPI
-
-print("TensorFlow version: {}".format(tf.__version__))
-print("Eager execution: {}".format(tf.executing_eagerly()))
-```
-
-    TensorFlow version: 2.2.0
-    Eager execution: True
-
-
 # Plot Historical data, seeing how the model performs
 
 
 ```python
 import sys
-#sys.path.append("../")
 import paxdk.PaxFinancialAPI
 import datetime
 import pandas as pd
@@ -75,7 +57,7 @@ plt.show()
 ```
 
 
-![png](output_4_0.png)
+![png](output_3_0.png)
 
 
 

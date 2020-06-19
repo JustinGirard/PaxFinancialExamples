@@ -65,10 +65,6 @@
 </li>
 
 <li>
-<a href="../TensorflowModel/" class="">Financial Model Training</a>
-</li>
-
-<li>
 <a href="./" class="active">Volatility Model</a>
 </li>
 
@@ -112,23 +108,8 @@ Theme by GitBook
 
 <h1 id="volatility-model">Volatility Model</h1>
 <p>This model predicts volatility of an underlying security over a one month rolling window using a proprietary technique. You can use volatility data in a variety of ways, when combined with indication of market direction, to choose when to enter or exit a position.</p>
-<pre><code class="python">import os
-import matplotlib.pyplot as plt
-import tensorflow as tf
-import sys
-#sys.path.append(&quot;../&quot;)
-import paxdk.PaxFinancialAPI
-
-print(&quot;TensorFlow version: {}&quot;.format(tf.__version__))
-print(&quot;Eager execution: {}&quot;.format(tf.executing_eagerly()))
-</code></pre>
-
-<pre><code>TensorFlow version: 2.2.0
-Eager execution: True
-</code></pre>
 <h1 id="plot-historical-data-seeing-how-the-model-performs">Plot Historical data, seeing how the model performs</h1>
 <pre><code class="python">import sys
-#sys.path.append(&quot;../&quot;)
 import paxdk.PaxFinancialAPI
 import datetime
 import pandas as pd
@@ -176,7 +157,7 @@ plt.show()
 
 </code></pre>
 
-<p><img alt="png" src="../output_4_0.png" /></p>
+<p><img alt="png" src="../output_3_0.png" /></p>
 <pre><code class="python">
 </code></pre>
 

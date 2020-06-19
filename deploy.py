@@ -3,14 +3,13 @@ import os
 import subprocess
 import nbformat
 import nbconvert
-
+import tempfile
 
 
 #os.system("cp /home/ec2-user/PaxFinancialExamples/examples/* /home/ec2-user/dev_paxfinancial_ai/examples")
 #os.system("cp /home/ec2-user/PaxFinancialExamples/tests/*.py /home/ec2-user/dev_paxfinancial_ai/docs/APIEndpoints")
 
-
-
+tmp_dir = tempfile.TemporaryDirectory()
 
 src_examples_dir = "/home/ec2-user/PaxFinancialExamples/examples/"
 examples_dir = "/home/ec2-user/PaxFinancialExamples/documentation/docs/examples/"
