@@ -1,1 +1,0 @@
-- [`get_historical_hour`](endpoints/get_historical_hour.md)
